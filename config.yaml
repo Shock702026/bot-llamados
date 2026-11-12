@@ -1,0 +1,61 @@
+# Configuración del bot de llamados.
+# Podés editar estas listas desde GitHub sin tocar bot.py.
+# No importan las mayúsculas ni las tildes: "Comunicación" y "comunicacion" son lo mismo.
+
+# Palabras que se buscan en TODO el llamado: título, cargo, organismo y requisitos.
+# Son palabras muy propias de tu profesión, así que casi nunca dan falsos avisos.
+palabras_en_todo:
+  - periodismo
+  - periodista
+  - comunicador
+  - comunicadora
+  - comunicologo
+  - comunicologa
+  - ciencias de la comunicacion
+  - licenciado en comunicacion
+  - licenciada en comunicacion
+  - licenciatura en comunicacion
+  - facultad de informacion y comunicacion
+  - fic
+  - prensa
+  - audiovisual
+  - publicidad
+  - publicista
+  - relaciones publicas
+  - redes sociales
+  - community manager
+
+# Palabras que se buscan SOLO en el título y el cargo.
+# Son más generales: en los requisitos aparecen en llamados que no son de tu perfil
+# (por ejemplo "buena comunicación oral" en un llamado administrativo).
+palabras_en_titulo:
+  - comunicacion
+  - contenidos
+  - redaccion
+  - redactor
+  - redactora
+  - corrector
+  - correctora
+  - locutor
+  - locutora
+  - ceremonial
+  - protocolo
+  - diseno grafico
+  - disenador grafico
+  - disenadora grafica
+  - fotografia
+  - fotografo
+  - fotografa
+
+# Si alguna de estas aparece en el título, el llamado se descarta igual.
+palabras_excluidas:
+  - telecomunicaciones
+
+# Solo se avisan llamados en estos departamentos.
+departamentos:
+  - montevideo
+  - maldonado
+
+# Si el llamado no dice en qué departamento es, ¿lo aviso igual?
+# true = sí (casi siempre son en Montevideo, por ejemplo los de la Udelar). false = no.
+avisar_si_no_dice_lugar: true
