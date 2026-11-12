@@ -1,0 +1,49 @@
+name: Bot de llamados
+
+on:
+  schedule:
+    # Horario en UTC. 12:00 UTC = 9:00 en Uruguay.
+    - cron: "0 12 * * *"
+  workflow_dispatch: {}   # permite ejecutarlo a mano desde la pestaña Actions
+
+permissions:
+  contents: write         # para guardar seen.json en el repositorio
+
+concurrency:
+  group: bot-llamados
+  cancel-in-progress: false
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Buscar llamados y avisar
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python bot.py
+
+      - name: Guardar llamados ya vistos
+        if: always()
+        run: |
+          if [ -f seen.json ]; then
+            git config user.name "bot-llamados"
+            git config user.email "bot-llamados@users.noreply.github.com"
+            git add seen.json
+            git diff --cached --quiet || git commit -m "Actualizar llamados vistos"
+            for i in 1 2 3; do
+              git pull --rebase -X theirs && git push && break
+              sleep 5
+            done
+          fi
