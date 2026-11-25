@@ -1,7 +1,14 @@
 # Bot de llamados
 
-Todos los días a las 9:00 (hora de Uruguay) revisa Uruguay Concursa y manda a Telegram
-los llamados nuevos de comunicación en Montevideo y Maldonado.
+Todos los días a las 9:00 (hora de Uruguay) revisa tres páginas y manda a Telegram
+los llamados nuevos de comunicación en Montevideo y Maldonado:
+
+- **Uruguay Concursa**: filtra con tus palabras clave y departamentos.
+- **Intendencia de Montevideo** (ofertalaboral.montevideo.gub.uy): filtra con tus palabras clave.
+- **Intendencia de Maldonado** (maldonado.gub.uy/Llamados_Laborales): avisa **todos** los llamados nuevos,
+  porque publican muy pocos.
+
+Si una página no responde, el bot te avisa y manda igual lo de las otras.
 
 - `bot.py`: el programa.
 - `config.yaml`: las palabras clave y los departamentos. Se puede editar desde GitHub.
